@@ -1,33 +1,44 @@
 {
-    "name": "node-template",
-    "version": "1.0.0",
-    "type": "module",
-    "description": "Plantilla base para los proyectos desarrollados en Node.JS",
-    "scripts": {
-        "dev": "nodemon src/index.js",
-        "start": "node src/index.js",
-        "lint": "eslint src/**/*.js --fix",
-        "prettier": "prettier --write .",
-        "prepare": "husky install",
-        "postinstall": "npm run prepare"
-    },
-    "devDependencies": {
-        "eslint": "8.18.0",
-        "eslint-config-prettier": "8.5.0",
-        "eslint-config-standard": "17.0.0",
-        "eslint-plugin-import": "2.26.0",
-        "eslint-plugin-n": "15.2.3",
-        "eslint-plugin-promise": "6.0.0",
-        "husky": "8.0.1",
-        "lint-staged": "13.0.2",
-        "nodemon": "2.0.18",
-        "prettier": "2.7.1"
-    },
-    "imports": {
-        "#Lib/*": "./src/lib/*"
-    },
-    "lint-staged": {
-        "*.js": "eslint --fix",
-        "*.{js,md}": "prettier --write"
-    }
+  "name": "company-products-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Nodejs REST API with JWT and Roles (Authorization and Authentication) & Mongodb",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint src/**/*.js --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
+    "postinstall": "npm run prepare"
+  },
+  "devDependencies": {
+    "eslint": "8.18.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.2.3",
+    "eslint-plugin-promise": "6.0.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.2",
+    "mongodb-memory-server": "8.8.0",
+    "nodemon": "2.0.18",
+    "prettier": "2.7.1"
+  },
+  "imports": {
+    "#Lib/*": "./src/lib/*"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.{js,md}": "prettier --write"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "16.0.1",
+    "express": "4.18.1",
+    "helmet": "5.1.1",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "6.5.0",
+    "morgan": "1.10.0"
+  }
 }

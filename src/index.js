@@ -1,3 +1,3 @@
-import { printHello } from '#Lib/hello.js';
+import { bootstrap } from './bootstrap.js';
 
-printHello();
+bootstrap();
