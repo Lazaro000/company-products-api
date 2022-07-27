@@ -3,14 +3,29 @@ import { config as dotenvConfig } from 'dotenv';
 import express from 'express';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
+import pkg from '../package.json';
 
 dotenvConfig();
 
 export const bootstrap = async () => {
   const app = express();
 
+  // Settings
+  app.set('pkg', pkg);
+
+  app.use(morgan('dev'));
   app.use(express.json());
   app.use(cors());
+
+  app.get('/', (req, res) => {
+    res.json({
+      name: app.get('pkg').name,
+      author: app.get('pkg').author,
+      description: app.get('pkg').description,
+      version: app.get('pkg').version,
+    });
+  });
 
   const mongo = await MongoMemoryReplSet.create({
     replSet: {
@@ -26,6 +41,6 @@ export const bootstrap = async () => {
   });
 
   app.listen(process.env.PORT, () =>
-    console.log(`🚀 Server ready at ${process.env.PORT}`)
+    console.log(`🚀 Server ready at http://localhost:${process.env.PORT}`)
   );
 };

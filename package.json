@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Nodejs REST API with JWT and Roles (Authorization and Authentication) & Mongodb",
+  "author": "Lazaro",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon --experimental-json-modules src/index.js",
     "start": "node src/index.js",
     "lint": "eslint src/**/*.js --fix",
     "prettier": "prettier --write .",
