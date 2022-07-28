@@ -5,7 +5,7 @@ import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import pkg from '../package.json';
-import { createRoles } from './libs/initialSetup.js';
+import { createAdmin, createRoles } from './libs/initialSetup.js';
 import { authRoutes } from './routes/auth.routes.js';
 import { productRoutes } from './routes/product.routes.js';
 import { userRoutes } from './routes/user.routes.js';
@@ -17,6 +17,7 @@ export const bootstrap = async () => {
 
   // Setup
   createRoles();
+  createAdmin();
 
   // Settings
   app.set('pkg', pkg);
