@@ -5,6 +5,7 @@ import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import pkg from '../package.json';
+import { productRoutes } from './routes/product.routes.js';
 
 dotenvConfig();
 
@@ -18,14 +19,19 @@ export const bootstrap = async () => {
   app.use(express.json());
   app.use(cors());
 
+  // Welcome route
   app.get('/', (req, res) => {
     res.json({
+      message: 'Welcome to my Products API',
       name: app.get('pkg').name,
       author: app.get('pkg').author,
       description: app.get('pkg').description,
       version: app.get('pkg').version,
     });
   });
+
+  // Routes
+  app.use('/products', productRoutes);
 
   const mongo = await MongoMemoryReplSet.create({
     replSet: {
