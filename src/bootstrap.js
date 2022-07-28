@@ -5,12 +5,18 @@ import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import pkg from '../package.json';
+import { createRoles } from './libs/initialSetup.js';
+import { authRoutes } from './routes/auth.routes.js';
 import { productRoutes } from './routes/product.routes.js';
+import { userRoutes } from './routes/user.routes.js';
 
 dotenvConfig();
 
 export const bootstrap = async () => {
   const app = express();
+
+  // Setup
+  createRoles();
 
   // Settings
   app.set('pkg', pkg);
@@ -32,6 +38,8 @@ export const bootstrap = async () => {
 
   // Routes
   app.use('/products', productRoutes);
+  app.use('/auth', authRoutes);
+  app.use('/users', userRoutes);
 
   const mongo = await MongoMemoryReplSet.create({
     replSet: {
