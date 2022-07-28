@@ -27,8 +27,8 @@ export const createUser = async (req, res) => {
       email: savedUser.email,
       roles: savedUser.roles,
     });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    return res.status(500).json(err.message);
   }
 };
 
